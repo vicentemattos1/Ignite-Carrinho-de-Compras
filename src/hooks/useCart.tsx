@@ -1,7 +1,7 @@
 import { createContext, ReactNode, useContext, useState } from "react";
 import { toast } from "react-toastify";
 import { api } from "../services/api";
-import { Product, Stock } from "../types";
+import { Product } from "../types";
 
 interface CartProviderProps {
   children: ReactNode;
@@ -76,7 +76,7 @@ export function CartProvider({ children }: CartProviderProps): JSX.Element {
       const productIndex = updatedCart.findIndex(
         (product) => product.id === productId
       );
-      if (productIndex > 0) {
+      if (productIndex >= 0) {
         updatedCart.splice(productIndex, 1);
         setCart(updatedCart);
         localStorage.setItem("@RocketShoes:cart", JSON.stringify(updatedCart));
